@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Destinations index{% endblock %}
+
+{% block body %}
+    <h1>Destinations index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>State</th>
+                <th>Surname</th>
+                <th>Picture</th>
+                <th>Summary</th>
+                <th>Extract</th>
+                <th>Pros</th>
+                <th>Created_at</th>
+                <th>Updated_at</th>
+                <th>Price_per_night</th>
+                <th>Picture2</th>
+                <th>Picture3</th>
+                <th>Picture4</th>
+                <th>Picture5</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for destination in destinations %}
+            <tr>
+                <td>{{ destination.id }}</td>
+                <td>{{ destination.state }}</td>
+                <td>{{ destination.surname }}</td>
+                <td>{{ destination.picture }}</td>
+                <td>{{ destination.summary }}</td>
+                <td>{{ destination.extract }}</td>
+                <td>{{ destination.pros }}</td>
+                <td>{{ destination.createdAt ? destination.createdAt|date('Y-m-d') : '' }}</td>
+                <td>{{ destination.updatedAt ? destination.updatedAt|date('Y-m-d') : '' }}</td>
+                <td>{{ destination.pricePerNight }}</td>
+                <td>{{ destination.picture2 }}</td>
+                <td>{{ destination.picture3 }}</td>
+                <td>{{ destination.picture4 }}</td>
+                <td>{{ destination.picture5 }}</td>
+                <td>
+                    <a href="{{ path('destinations_show', {'id': destination.id}) }}">show</a>
+                    <a href="{{ path('destinations_edit', {'id': destination.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="15">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('destinations_new') }}">Create new</a>
+{% endblock %}
